@@ -1,0 +1,127 @@
+
+.slider
+{
+    position: relative;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url(../../images/bg5.png);
+    background-position: center;
+    background-size: cover;
+
+    
+}
+
+
+
+
+.image
+{
+    width: 1000px;
+    height: 600px;
+    border-radius: 10px;
+
+
+}
+
+.right-arrow{
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    font-size: 3rem;
+    color:  #d3963a;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.left-arrow{
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    font-size: 3rem;
+    color: #d3963a;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.slide
+{
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+
+.slide.active
+{
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}
+
+
+
+@media only screen and (max-width: 1200px)
+{
+   
+
+    .image
+    {
+         margin: 10vh auto;
+         width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 900px)
+{
+  
+
+    .image
+    {
+         margin: 10vh auto;
+         width: 700px
+
+    }
+}
+
+@media only screen and (max-width: 768px)
+{
+   
+
+    .image
+    {
+         margin: 10vh auto;
+         width: 600px;
+         height:500px;
+    }
+}
+
+@media only screen and (max-width: 650px)
+{
+  
+
+    .image
+    {
+         margin: 10vh auto;
+         width: 450px;
+         height: 400px;
+    }
+}
+
+
+
+@media only screen and (max-width: 480px)
+{
+    
+    .slider
+    {
+        height: 600px;
+    }
+    .image
+    {
+         margin: 10vh auto;
+         width: 300px;
+         height: 250px;
+    }
+}
