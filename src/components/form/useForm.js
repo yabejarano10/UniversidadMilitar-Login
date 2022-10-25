@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import {auth,createUserProfileDocument} from './../../firebase/firebase.utils';
+import { useNavigate } from "react-router-dom";
 
 const useForm = (callback, validate) =>
 {
@@ -11,6 +13,7 @@ const useForm = (callback, validate) =>
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    let navigate = useNavigate();
 
 
     const handleChange = e =>
@@ -23,12 +26,24 @@ const useForm = (callback, validate) =>
 
     };
 
-    const handleSubmit = e =>
+    async function handleSubmit(e)
     {
         e.preventDefault();
-
         setErrors(validate(values));
-        setIsSubmitting(true);
+
+        
+        const {username,email,password} = values;
+        let displayName = username
+        try{
+            const {user} = await auth.createUserWithEmailAndPassword(email,password);
+
+            await createUserProfileDocument(user,{displayName} );
+        }
+        catch(error){
+            console.log(error)
+        }
+        setIsSubmitting(true);  
+        navigate("/", { replace: true });
     };
 
     useEffect(() =>

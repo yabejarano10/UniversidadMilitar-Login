@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth,signInWithGoogle } from '../../firebase/firebase.utils';
 import { useNavigate } from "react-router-dom";
 
 import { Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, Text } from './SigninElements';
@@ -16,7 +16,20 @@ const submitGoogle = async ()=>{
   await signInWithGoogle()
   navigate('/');
 }
-const submit = async ()=>{
+const submit = async (e)=>{
+  e.preventDefault(); 
+  try{
+   auth.signInWithEmailAndPassword(email,password).then(() => {
+    setEmail('')
+    setPassword('')
+    navigate('/');
+   });
+    
+  }
+  catch(error)
+  {
+    console.log(error)
+  }
 }
 
   return (
@@ -31,7 +44,7 @@ const submit = async ()=>{
                     <FormInput type='email' required onChange={(ev)=> setEmail(ev.target.value)}/>
                     <FormLabel htmlFor='for'>Contraseña</FormLabel>
                     <FormInput type='password' required onChange={(ev)=> setPassword(ev.target.value)}/>
-                    <FormButton type = 'submit' onClick={submit}>Iniciar Sesión</FormButton>
+                    <FormButton  onClick={(e) => {submit(e)}}>Iniciar Sesión</FormButton>
                     <FormButton type = 'submit' onClick={submitGoogle}>Iniciar Sesión con Google</FormButton>
                     <Text> Olvido su Contraseña?</Text>
                 </Form>

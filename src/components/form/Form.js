@@ -22,10 +22,7 @@ const Form = () => {
   }
 
   return (
-
-    
     <>
-  
     <div className='contenedor'>
     <Sidebar isOpen = {isOpen} toggle={toggle} />
     <Navbar2 toggle={toggle} />
@@ -35,7 +32,7 @@ const Form = () => {
           <img className='form-img' src={tigumLogo} alt='spaceship' />
         </div>
         {!isSubmitted ? (
-          <FormSignup submitForm={submitForm} />
+          <FormSignup/>
         ) : (
           <FormSuccess />
         )}
