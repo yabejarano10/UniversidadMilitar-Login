@@ -41,9 +41,14 @@ const Navbar = ({toggle,currentUser}) => {
             <NavItem>
                 <NavLinkp to="/semilleros" onClick={toggleHome}>Semilleros</NavLinkp>
             </NavItem>
+            {currentUser?
+              <NavItem>
+              <NavLinkp to="/proyectos" onClick={toggleHome}>Publicaciones</NavLinkp>
+              </NavItem>
+            :
             <NavItem>
             <NavLinkp to="/registrese" onClick={toggleHome}>Registrese</NavLinkp>
-            </NavItem>
+            </NavItem>}
             <NavItem>
               <NavLinka href="mailto:tigum@unimilitar.edu.co" target="_blank">Contáctenos</NavLinka>
             </NavItem>

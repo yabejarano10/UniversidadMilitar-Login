@@ -8,6 +8,7 @@ import Semilleros from './pages/semilleros';
 import Form from './components/form/Form';
 import {auth,createUserProfileDocument} from './firebase/firebase.utils';
 import React from 'react';
+import Proyectos from './pages/proyectos';
 
 class App extends React.Component {
 
@@ -53,6 +54,7 @@ class App extends React.Component {
           <Route path="/investigadores" element={<Investigadores currentUser={this.state.currentUser}/>} exact />
           <Route path="/semilleros" element={<Semilleros currentUser={this.state.currentUser}/>} exact />
           <Route path="/registrese" element={<Form/>} exact />
+          <Route path="/proyectos" element={<Proyectos currentUser={this.state.currentUser}/>} exact />
         </Routes>
       </Router>
     );

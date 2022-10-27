@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { collection, query, where,getDocs  } from 'firebase/firestore';
 
 const config = {
     apiKey: "AIzaSyDLlxUuutYqbGyM8rhV9DS3If3nxzdbL2I",
@@ -41,6 +42,13 @@ export const createUserProfileDocument = async (userAuth,additionalData) => {
   
   return userRef;
    
+}
+
+export const getProjects = async () => {
+  const q = query(collection(firestore,"proyectos"),where("idUsuario","==",auth.currentUser.uid));
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot;
 }
 
 firebase.initializeApp(config);
