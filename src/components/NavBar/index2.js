@@ -50,7 +50,7 @@ const Navbar2 = ({toggle,currentUser}) => {
             </NavItem>
             {currentUser?
               <NavItem>
-              <NavLinkp to="/proyectos" onClick={toggleHome}>Publicaciones</NavLinkp>
+              <NavLinkp to="/proyectos" onClick={toggleHome}>Proyectos</NavLinkp>
               </NavItem>
             :
             <NavItem>
@@ -63,11 +63,11 @@ const Navbar2 = ({toggle,currentUser}) => {
         {
           currentUser ? 
           <Navbtn>
-            <NavbtnLink onClick={() => auth.signOut()} to="/">Sign Out</NavbtnLink>
+            <NavbtnLink onClick={() => auth.signOut()} to="/">Cerrar Sesión</NavbtnLink>
           </Navbtn> 
           :
           <Navbtn>
-            <NavbtnLink to="/signin">Sign in</NavbtnLink>
+            <NavbtnLink to="/signin">Iniciar Sesión</NavbtnLink>
           </Navbtn>
         }
       </NavbarContainer>

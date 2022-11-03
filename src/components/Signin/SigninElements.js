@@ -84,6 +84,20 @@ export const FormH1=styled.h1`
     font-weight: 400;
     text-align: center;
 `;
+export const FormH2=styled.h1`
+    margin-bottom: 40px;
+    color: #a30707;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+`;
+export const FormH3=styled.h1`
+    margin-bottom: 40px;
+    color: #259603;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+`;
 
 export const FormLabel = styled.label`
     margin-bottom: 8px;

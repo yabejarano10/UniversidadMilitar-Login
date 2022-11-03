@@ -5,7 +5,7 @@ import './Form.css';
 
 const FormSignup = ({submitForm}) => {
 
-    const {handleChange, values, handleSubmit, errors} = useForm(submitForm, validate);
+    const {handleChange, values, handleSubmit, errors,isSending} = useForm(submitForm, validate);
 
 
   return (
@@ -43,7 +43,7 @@ const FormSignup = ({submitForm}) => {
                 {errors.password2 && <p>{errors.password2}</p>}             
             </div>
             <button className='form-input-btn' type="submit">
-                Inscribase
+                {isSending? "ENVIANDO INFORMACIÓN..." :"Inscribase"}
             </button>
             <span className='form-input-login'>
                 Ya tiene una cuenta? Entre <a href='#'>aquí</a>            

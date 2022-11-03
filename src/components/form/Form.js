@@ -11,6 +11,7 @@ const Form = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
+    console.log("HJASHJSAHA")
     setIsSubmitted(true);
   }
    
@@ -32,7 +33,7 @@ const Form = () => {
           <img className='form-img' src={tigumLogo} alt='spaceship' />
         </div>
         {!isSubmitted ? (
-          <FormSignup/>
+          <FormSignup submitForm={submitForm}/>
         ) : (
           <FormSuccess />
         )}

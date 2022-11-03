@@ -31,6 +31,7 @@ export const createUserProfileDocument = async (userAuth,additionalData) => {
         displayName,
         email,
         createdAt,
+        autorizado: false,
         ...additionalData
       });
       
@@ -45,7 +46,7 @@ export const createUserProfileDocument = async (userAuth,additionalData) => {
 }
 
 export const getProjects = async () => {
-  const q = query(collection(firestore,"proyectos"),where("idUsuario","==",auth.currentUser.uid));
+  const q = query(collection(firestore,"proyectos"));
 
   const querySnapshot = await getDocs(q);
   return querySnapshot;
@@ -56,10 +57,18 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt:'select_account'});
-export const signInWithGoogle = async () => {
- await  auth.signInWithPopup(provider);
+export const checkAuthorized = async (email) => {
+  const q = query(collection(firestore,"users"),where("email","==",email));
+  const querySnapshot = await getDocs(q);
+
+  const authorized = querySnapshot.docs.pop().data().autorizado
+  return authorized
 }
+
+// const provider = new firebase.auth.GoogleAuthProvider();
+// provider.setCustomParameters({prompt:'select_account'});
+// export const signInWithGoogle = async () => {
+//  await  auth.signInWithPopup(provider);
+// }
 
 export default firebase;

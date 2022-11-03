@@ -15,14 +15,18 @@ const Proyectos = ({currentUser}) => {
     useEffect(() => {
 
       const fetchData = async() => {
-        const response = await getProjects();
+       const response = await getProjects();
 
         
         setProjects(response.docs.map((doc) => ({
           id:doc.data().idUsuario,
           titulo:doc.data().titulo,
           descripcion:doc.data().descripcion,
-          enlace:doc.data().enlace
+          enlace:doc.data().enlace,
+          autores:doc.data().autores,
+          claveAcceso:doc.data().claveAcceso,
+          institucion:doc.data().institucion,
+          imagen:doc.data().imagen
         })));
       }
       fetchData()
