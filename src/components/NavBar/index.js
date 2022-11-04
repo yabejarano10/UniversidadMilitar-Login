@@ -2,13 +2,30 @@ import React from 'react';
 import {FaBars} from 'react-icons/fa';
 import {Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, Navbtn, NavbtnLink, ImgWrap, Img, NavLinkp, NavLinka} from './NavVarElements';
 import { animateScroll as scroll } from 'react-scroll';
-import { auth } from '../../firebase/firebase.utils';
+import { auth } from '../../firebase/firebase.utils'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const toggleHome = () =>
 {
   scroll.scrollToTop();
   
+}
+
+const LogOut = () => {
+  auth.signOut();
+  toast.success("Cerró Sesión Con éxito",{
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
+
 }
 const Navbar = ({toggle,currentUser}) => {
   return (
@@ -56,13 +73,24 @@ const Navbar = ({toggle,currentUser}) => {
         {
           currentUser ? 
           <Navbtn>
-            <NavbtnLink onClick={() => auth.signOut()} to="/">Cerrar Sesión</NavbtnLink>
+            <NavbtnLink onClick={LogOut} to="/">Cerrar Sesión</NavbtnLink>
           </Navbtn> 
           :
           <Navbtn>
             <NavbtnLink to="/signin">Iniciar Sesión</NavbtnLink>
           </Navbtn>
         }
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark" />
       </NavbarContainer>
     </Nav>
     </>

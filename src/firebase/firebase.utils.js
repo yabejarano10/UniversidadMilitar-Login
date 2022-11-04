@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-import { collection, query, where,getDocs  } from 'firebase/firestore';
+import { collection, query, where,getDocs, onSnapshot  } from 'firebase/firestore';
 
 const config = {
     apiKey: "AIzaSyDLlxUuutYqbGyM8rhV9DS3If3nxzdbL2I",
@@ -12,6 +12,9 @@ const config = {
   appId: "1:271640429760:web:169f45159a8b5a49951925",
   measurementId: "G-1YX8471MV9"
 };
+
+let authorized = false;
+let proyectsSnap = null;
 
 export const createUserProfileDocument = async (userAuth,additionalData) => {
   
@@ -48,8 +51,13 @@ export const createUserProfileDocument = async (userAuth,additionalData) => {
 export const getProjects = async () => {
   const q = query(collection(firestore,"proyectos"));
 
-  const querySnapshot = await getDocs(q);
-  return querySnapshot;
+  await onSnapshot(q,(queryS) => {
+    proyectsSnap = queryS
+  });
+}
+
+export const getProjectsSnap = () => {
+  return proyectsSnap
 }
 
 firebase.initializeApp(config);
@@ -59,9 +67,14 @@ export const firestore = firebase.firestore();
 
 export const checkAuthorized = async (email) => {
   const q = query(collection(firestore,"users"),where("email","==",email));
-  const querySnapshot = await getDocs(q);
 
-  const authorized = querySnapshot.docs.pop().data().autorizado
+  await onSnapshot(q, (queryS) => {
+    authorized = queryS.docs.pop().data().autorizado
+  });
+}
+
+export const GetAuthorized = () => {
+  
   return authorized
 }
 

@@ -129,5 +129,4 @@ export const Img = styled.img`
     height: 32em;
     margin: 10em 0 10px 2em;
     padding-right: 0;
-    border: 5px solid #000;
 `;

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { auth,checkAuthorized } from '../../firebase/firebase.utils';
+import { auth,checkAuthorized, GetAuthorized } from '../../firebase/firebase.utils';
 import { useNavigate } from "react-router-dom";
 
 import { Container, FormWrap, Icon, FormContent, Form, FormH1,FormH2,FormH3, FormLabel, FormInput, FormButton, Text } from './SigninElements';
@@ -23,8 +23,12 @@ let navigate = useNavigate();
 const submit = async (e)=>{
   e.preventDefault(); 
   try{
-    const authorized = await checkAuthorized(email)
+    
+    await checkAuthorized(email)
 
+    setTimeout(() => {
+      
+    const authorized = GetAuthorized()
     if(authorized){
      
        auth.signInWithEmailAndPassword(email,password).then(() => {
@@ -39,6 +43,7 @@ const submit = async (e)=>{
     else{
       setAuthorized(false)
     }
+  },1000);
     
   }
   catch(error)
