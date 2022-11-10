@@ -14,7 +14,7 @@ const toggleHome = () =>
 const LogOut = () => {
   auth.signOut();
   toast.success("Cerró Sesión Con éxito",{
-    position: "top-right",
+    position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,

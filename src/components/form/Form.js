@@ -28,7 +28,6 @@ const Form = () => {
     <Sidebar isOpen = {isOpen} toggle={toggle} />
     <Navbar2 toggle={toggle} />
       <div className='form-container'>
-        <span className='close-btn'>×</span>
         <div className='form-content-left'>
           <img className='form-img' src={tigumLogo} alt='spaceship' />
         </div>
